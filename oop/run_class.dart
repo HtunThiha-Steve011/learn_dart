@@ -1,4 +1,4 @@
-import 'class.dart';
+import 'classes.dart';
 
 void main() {
   Person person1 = Person('Steve', 20, 'M');
