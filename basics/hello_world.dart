@@ -1,9 +1,7 @@
-// top-level main() function is the program entry point
+// Every program starts from a top-level void main() function
 void main() {
-  
-  // Note: String syntax convention in dart is single-quoted ''
-  print('Hello World!');
-}
+  // print() to print on console
+  print('🌏 Hello World!');
 
-// run the program with
-// $ dart run hello_world.dart
+  // In Dart, single-quoted '' is the syntax convention for Strings
+}

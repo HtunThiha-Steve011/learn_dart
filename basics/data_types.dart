@@ -1,55 +1,71 @@
 void main() {
-
-  // Dart is type-safe
-  // Main basic data types - int, String, double, Null
-  int zero = 0;
-  String greeting = 'Hello!';
-  double price = 18.5;
-  Null nullValue = null;
-
-  print('===== Basic Data Types =====');
-  describeVariable(zero, 'zero');
-  describeVariable(greeting, 'greeting');
-  describeVariable(price, 'price');
-  describeVariable(nullValue, 'nullValue');
-
-  // Dart is null-safe
-  // Use ? to indicate a variable as "nullable"
-  print('===== Null safety =====');
-  int? a = null;
-  describeVariable(a, 'a before value change');
-  a = 5;
-  describeVariable(a, 'a after value change');
-
-  // dynamic - close type-check entirely for a variable (including null-check)
-  // Note: dynamic is not a type, it is the option to close type-checking
-  // dyanmic is not under Object
-  print('===== Type: dynamic =====');
-  dynamic randomElement; // this can be anything (before assignment, this is null)
-  describeVariable(randomElement, 'randomElement');
-
-  // Every variable type is under Object
-  Object x; // this can be any object but not null
-  Object? y; // can be null here
-  // describeVariable(x, 'x'); // trying to do this will result in error because x is not initialized yet
-  print('===== Type: Object =====');
-  x = 'Hello world';
-  describeVariable(x, 'x');
-  describeVariable(y, 'y');
-
-  // num: parent type of int and double
-  // can be assigned int or double
-  print('===== Type: num =====');
-  num number;
-  number = 3;
-  describeVariable(number, 'number');
-  number = 3.0;
-  describeVariable(number, 'number');
+  runVariables();
 }
 
-// prints variable name, value and runtime type
-void describeVariable(dynamic variable, String name) {
-  // String interpolation: $ for direct name insert ${} for more
+void runVariables() {
+
+  // basic data-types: int, double, String, bool
+  int zero = 0;
+  double price = 12.99;
+  String greeting = 'Hi';
+  bool pigsCanFly = false;
+
+  print('===== BASIC DATA TYPES =====');
+  describeVariable('zero', zero);
+  describeVariable('price', price);
+  describeVariable('greeting', greeting);
+  describeVariable('pigsCanFly', pigsCanFly);
+
+  // num: parent type of int and double (can be either of them)
+  num anotherPrice = 12;
+  print('===== DATA TYPE: num =====');
+  // runtime type will be either int or double
+  describeVariable('anotherPrice', anotherPrice);
+  anotherPrice = 12.08;
+  // notice runTimeType has changed to 'double' from int
+  describeVariable('anotherPrice', anotherPrice);
+
+  print('===== DATA TYPE: var =====');
+  // var: type-inference (infer type from right side)
+  // this works with any variable type
+  var x = 'New thing';
+  // can't change data type because x is already inferred as 'String'
+  // x = 5; (this will cause compile error)
+  describeVariable('x', x);
+  x = 'Changed String';
+  describeVariable('x', x);
+
+  // Dart is null-safe
+  // can't set any variable to null by default
+  // String x = null; // will cause compile error
+  // Use ? to denote a variable as "nullable"
+  String? nullableString = null;
+  print('===== DATA TYPE: null =====');
+  describeVariable('nullableString', nullableString);
+
+  // Null itself is a type for null
+  Null absoluteNullVariable = null;
+  describeVariable('absoluteNullVariable', absoluteNullVariable);
+
+  // dynamic: closes the type-check for the variable entirely
+  // Acts like JavaScript variable without type at all
+  dynamic iCanBeAnything;
+  iCanBeAnything = 'Hello World';
+  print('===== DATA TYPE: dynamic');
+  describeVariable('iCanBeAnything', iCanBeAnything);
+  iCanBeAnything = 2;
+  describeVariable('iCanBeAnything', iCanBeAnything);
+  iCanBeAnything = 12.97;
+  describeVariable('iCanBeAnything', iCanBeAnything);
+  iCanBeAnything = true;
+  describeVariable('iCanBeAnything', iCanBeAnything);
+  iCanBeAnything = null;
+  describeVariable('iCanBeAnything', iCanBeAnything);
+}
+
+// "dynamic" here allows variable input to be of any type
+void describeVariable(String name, dynamic variable) {
+  // string interpolation: $ for direct insert with name, ${} for additional operations
   print('📦 Variable: $name = $variable');
-  print('⚙️  Runtime type: ${variable.runtimeType}\n');
+  print('⚙️  Runtime type: ${variable.runtimeType}\n');  
 }
